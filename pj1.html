@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="proj1.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section id="pantalla-dividida">
+        <div  id="general">
+          <div id="izquierda">
+              <form>
+                  <div class="mb-3">
+                      <label for="exampleInputObj1" class="form-label">Nombre</label>
+                      <input id="nombre" type="text" class="form-control"  placeholder="key">
+                     
+                  </div>
+                  <div class="mb-3">
+                      <label for="exampleInputkey1" class="form-label">Nacionalidad</label>
+                      <input id="nacionalidad" type="text" class="form-control"  placeholder="value">
+                  </div>
+    
+                    <button id="boton" type="reset" class="btn btn-success" onclick="capturar();">ingresar</button>
+                    <button id="boton" type="reset" class="btn btn-success" onclick="ordenark();">ordenar</button>
+              </form>
+          </div>
+    
+            
+        </div>
+        <div id="contenedor">
+          <div id="derecha">
+            <h1><strong>Objeto </strong></h1>
+            <div id="descobj">
+            <label>"persona"</label>
+            <span class="obj-hex"></span>
+            <form>
+                  <div class="mb-3">
+                    <label >Keys</label>
+                      <label id="matriznombre" for="examplen" class="form-label"></label>
+                     
+                  </div>
+                  <div class="mb-3">
+                    <label >values</label>
+                      <label id="matriznacion"for="examplena" class="form-label"></label>
+                     
+                  </div>
+              </form>
+          </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+<script>
+
+  // creamos objeto
+let persona ={
+};
+ // var para mostrar obj
+$showobj = document.querySelector('.obj-hex');
+$shownom = document.querySelector("#matriznombre");
+$shownac = document.querySelector("#matriznacion");
+function capturar(){
+  //validaciones
+  event.preventDefault();
+            if ($('#nombre').val() == '') {
+                alert("Ingresar Nombre");
+                return;
+            } 
+            if ($('#nacionalidad').val() == '') {
+                alert("Ingresar nacionalidad");
+                return;
+            } 
+            
+
+  // obtener datos
+  
+  var propiedad = document.getElementById("nombre").value;
+  var valor = document.getElementById("nacionalidad").value;
+
+  // ingresar datos a objeto
+  persona[propiedad] = valor;
+// mostrar objeto en pantalla
+var y = JSON.stringify(persona);
+  $showobj.innerHTML = y;
+ 
+  // ordenar datos del array 
+
+
+ 
+} ;   
+console.log(persona);
+
+// funcion para ordenar los datos del objeto 
+function ordenark(){
+
+
+// ordenar keys alfabeticamente
+  let a = (Object.keys(persona))
+  
+// ordenar keys
+  a.sort((a,b) => {
+    if ( a==b){
+      return 0;
+
+    }
+    if (a<b){
+      return -1;
+    }
+    return 1;
+  });
+ 
+ var matno = JSON.stringify(a);
+ console.log(matno);
+// ordenar values segun orden de las keys 
+  var x = a.length;
+  let arrb = [];
+  for (let i = 0; i < x; i++) {
+    g = a[i];
+    arrb.push(persona[g]);
+}
+
+
+var matnac = JSON.stringify(arrb);
+console.log(matnac);
+// mostrar objeto en pantalla
+$shownom.innerHTML = matno;
+$shownac.innerHTML = matnac;
+// mostrar objeto en pantalla
+}
+</script>
+</body>
+</html>
